@@ -1,0 +1,85 @@
+/*Your styles*/
+
+ body {
+    margin: 10px;
+
+}
+section{
+    height: 300px;
+}
+section#top{
+    background: gray;
+
+}
+section#bottom{
+    background: white;
+    height: 300px;
+
+}
+div.left {
+    width: 50%;
+    height: 200px;
+    background: yellow;
+}
+div.right {
+    width: 50%;
+    height: 200px;
+    background: green;
+}
+#content {
+    height: 500px;
+    margin-right:auto;
+    margin-left:auto;
+    vertical-align:middle;
+    width:100%;
+    text-align: center;
+    
+
+}
+
+
+#btn_test{
+    display: inline-block;
+   
+    background: blue;
+    margin-top: 19%;
+    margin-bottom: 19%;
+    width: 50%;
+    /*margin:  100px auto;*/
+}
+
+
+
+
+/*
+Those classes will be edited at runtime with values specified
+by the settings of the CC application
+*/
+.hostFontColor{}
+.hostFontFamily{}
+.hostFontSize{
+    font-size: 1.5rem;
+
+}
+
+/*font family, color and size*/
+.hostFont{}
+/*background color*/
+.hostBgd{}
+/*lighter background color*/
+.hostBgdLight{}
+/*darker background color*/
+.hostBgdDark{}
+/*background color and font*/
+.hostElt{}
+
+
+.hostButton{
+    border:1px solid;
+    border-radius:2px;
+    height:20px;
+    vertical-align:bottom;
+    font-family:inherit;
+    color:inherit;
+    font-size:inherit;
+}
