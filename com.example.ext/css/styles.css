@@ -1,31 +1,12 @@
 /*Your styles*/
 
- body {
-    margin: 10px;
 
-}
 section{
     height: 300px;
 }
-section#top{
-    background: gray;
 
-}
-section#bottom{
-    background: white;
-    height: 300px;
 
-}
-div.left {
-    width: 50%;
-    height: 200px;
-    background: yellow;
-}
-div.right {
-    width: 50%;
-    height: 200px;
-    background: green;
-}
+
 #content {
     height: 500px;
     margin-right:auto;
