@@ -25,6 +25,8 @@ Might crash your Adobe host app.
 })();
 
 
+
+
 // demo function to call jsx
 (function () {
 	var csInterface = new CSInterface();
@@ -73,10 +75,29 @@ var getPathOfExtension =function () {
 var getFiles = function (path){
 	var csInterface = new CSInterface();
 
-	csInterface.evalScript('getFilesFromPath("' + path + '")');
-	console.log("day la path: "+ path);
+	csInterface.evalScript('getFilesFromPath("' + path + '")', function(res){
+		path = path.replace(/\//g,"\\");
+		console.log("path: "+path);
+		console.log("res: "+res);
+		var resultArray = res.split(",");
+		console.log(resultArray);
+		$(".set-holder").empty();
+		for (var i = 0; i < resultArray.length; i++) {
+			var htmlElement = document.createElement('h4');
+			htmlElement.classList.add("set-item");
+			// htmlElement.classList.add("unselectable");
+			htmlElement.classList.add("topcoat-button");
+			htmlElement.innerText = resultArray[i].replace(path+"\\","");
+
+			$(".set-holder").append(htmlElement);
+		}
+	});
 }
-getFiles(getPathOfExtension()+"/resource");
+ getFiles(getPathOfExtension()+"/resource/AEP");
+
+// console.log(getPathOfExtension()+"/resource/AEP");
+
+// getFiles(getPathOfExtension()+"/resource");
 // get os
 function getOS() {
 	var userAgent = window.navigator.userAgent,
@@ -108,9 +129,9 @@ function getOS() {
 // test button
 
 $("#btn-test2").click(function(){
-			var csInterface = new CSInterface();
-			csInterface.evalScript('importAep("'+getPathOfExtension()+"/resource/AEP/Blur"+'")');
-			console.log("haha"+getPathOfExtension()+"/resource/AEP/Blur");
-		});
+	var csInterface = new CSInterface();
+	csInterface.evalScript('importAep("'+getPathOfExtension()+"/resource/AEP/Blur"+'")');
+	console.log("haha"+getPathOfExtension()+"/resource/AEP/Blur");
+});
 
 

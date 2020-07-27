@@ -10,7 +10,15 @@ function sayHello(){
 function getFilesFromPath(path){
 	var thisFolder = Folder(path);
 	var files = thisFolder.getFiles();
-	// alert(files);
+
+	var fullPaths = [];
+	for (var i =0; i<files.length; i++) {
+		// alert(files[i].fsName);
+		fullPaths.push(files[i].fsName);
+	}
+
+	alert (fullPaths.length);
+	return fullPaths;
 
 }
 
