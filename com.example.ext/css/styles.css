@@ -1,108 +1,19 @@
-/*Your styles*/
 
-html, body {margin: 0; height: 100%; overflow: hidden}
-section{
-    height: 300px;
-}
-* {
-    margin: 0;
+
+html, body {overflow: hidden}
+#left{
+
     padding: 0;
 }
-
-#content {
-    height: 500px;
-    margin-right:auto;
-    margin-left:auto;
-    vertical-align:middle;
-    width:100%;
-    text-align: center;
-
+#right {
+    height: 50%;
 }
-.top, .bottom {
-    width: 100%; height: 50%; display: block; 
+#bottom-section {
+    overflow: scroll;
+    scrollbar-width: thin;
 }
-.top {
-    background: blue;
-}
-.bottom {
-   display: flex;
-  /*flex-wrap: nowrap;*/
-}
-.left, .right{
-    border: solid 0.2px gray;
-    width:50%; height: 100%; 
-    /*display: inline-block;*/
-}
-.left{
-     /*background: yellow;*/
-     /*float: left;*/
-     display: flex;
-    
-    
-}
-.right {
-    display: flex;
-     background: green;
-}
-.set-holder {
-    overflow: auto;
-}
-.set-item {
+.btn{
+    margin: 0;
     width: 100%;
-    text-align: center;    
-    border-radius: 1px;
 }
 
-.unselectable {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-#btn_test{
-    display: inline-block;
-
-    background: blue;
-    margin-top: 19%;
-    margin-bottom: 19%;
-    width: 50%;
-    /*margin:  100px auto;*/
-}
-
-
-
-
-/*
-Those classes will be edited at runtime with values specified
-by the settings of the CC application
-*/
-.hostFontColor{}
-.hostFontFamily{}
-.hostFontSize{
-    font-size: 1.5rem;
-
-}
-
-/*font family, color and size*/
-.hostFont{}
-/*background color*/
-.hostBgd{}
-/*lighter background color*/
-.hostBgdLight{}
-/*darker background color*/
-.hostBgdDark{}
-/*background color and font*/
-.hostElt{}
-
-
-.hostButton{
-    border:1px solid;
-    border-radius:2px;
-    height:20px;
-    vertical-align:bottom;
-    font-family:inherit;
-    color:inherit;
-    font-size:inherit;
-}

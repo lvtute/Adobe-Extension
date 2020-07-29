@@ -38,7 +38,7 @@ Might crash your Adobe host app.
 	function init() {
 
 
-		themeManager.init();
+		// themeManager.init();
 
 		$("#btn_test").click(function () {
 			csInterface.evalScript('sayHello()');
@@ -83,18 +83,39 @@ var getFiles = function (path){
 		console.log(resultArray);
 		$(".set-holder").empty();
 		for (var i = 0; i < resultArray.length; i++) {
-			var htmlElement = document.createElement('h4');
-			htmlElement.classList.add("set-item");
-			// htmlElement.classList.add("unselectable");
-			htmlElement.classList.add("topcoat-button");
-			htmlElement.innerText = resultArray[i].replace(path+"\\","");
+			
 
-			$(".set-holder").append(htmlElement);
+			
+			var tempId = resultArray[i].replace(path+"\\","");
+			var element = document.createElement("button");
+			element.setAttribute('id', tempId.replace(" ",""));
+			// alert(element.getAttribute('id'));
+			element.setAttribute('toggle-state','0');
+			element.classList.add('btn','btn-primary', 'btn-set');
+			element.setAttribute('type','button');
+			element.setAttribute('data-toggle','collapse');
+			element.setAttribute('data-target','#collapseExample');
+			element.setAttribute('aria-expanded','false');
+			element.setAttribute('onClick','xxxxx('+element.getAttribute('id')+')');
+			alert(element.getAttribute('id'));
+			element.setAttribute('aria-controls','collapseExample');
+			element.innerText = tempId;
+			$('#left').append(element);
+
 		}
 	});
 }
- getFiles(getPathOfExtension()+"/resource/AEP");
+$('.btn-set').click(function(){
+	alert('hello');
+});
+getFiles(getPathOfExtension()+"/resource/AEP");
 
+var xxxxx= function(state){
+	
+	
+	alert(state.getAttribute('toggle-state'));
+
+}
 // console.log(getPathOfExtension()+"/resource/AEP");
 
 // getFiles(getPathOfExtension()+"/resource");
