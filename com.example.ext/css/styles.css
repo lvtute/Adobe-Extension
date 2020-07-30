@@ -15,5 +15,29 @@ html, body {overflow: hidden}
 .btn{
     margin: 0;
     width: 100%;
+    border-radius: 0;
+}
+.card.card-body.collapse{
+    padding: 0;
+    background: none;
+
+   
 }
 
+.button4 {background-color: #e7e7e7; color: black;} /* Gray */
+.button4:hover {background-color: #555555; color:white;} /* Black */
+
+.button5 {
+    background-color: #C5CAE9;
+    position: relative;
+} /* Black */
+.button5:hover {color: #555555;background: white;
+    width: 110%;
+    margin-left: 7%;
+    z-index: 1;} /* Black */
+
+
+#right{
+    background: yellow;
+    z-index: 0;
+}

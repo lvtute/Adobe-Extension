@@ -83,21 +83,28 @@ var getFiles = function (path){
 		console.log(resultArray);
 		$(".set-holder").empty();
 		for (var i = 0; i < resultArray.length; i++) {
+			// if (i==0) {continue;}
 			
 
 			
 			var tempId = resultArray[i].replace(path+"\\","");
 			var element = document.createElement("button");
-			element.setAttribute('id', tempId.replace(" ",""));
+			// alert(tempId.replace(" ",""));
+			element.setAttribute('id', "set"+tempId.replace(" ",""));
 			// alert(element.getAttribute('id'));
-			element.setAttribute('toggle-state','0');
-			element.classList.add('btn','btn-primary', 'btn-set');
+			// element.setAttribute('toggle-state','0');
+			element.setAttribute('pos',i);
+			element.classList.add('btn','btn-primary');
 			element.setAttribute('type','button');
+			element.setAttribute('toggle-state','0');
 			element.setAttribute('data-toggle','collapse');
 			element.setAttribute('data-target','#collapseExample');
 			element.setAttribute('aria-expanded','false');
-			element.setAttribute('onClick','xxxxx('+element.getAttribute('id')+')');
-			alert(element.getAttribute('id'));
+			// element.setAttribute('onClick','xxxxx("haha")');
+			element.setAttribute('onClick','xxxxx('+element.getAttribute("id")+')');
+
+			console.log("element "+i+"("+tempId+")"+" has been given an onClcik");
+			console.log(element);
 			element.setAttribute('aria-controls','collapseExample');
 			element.innerText = tempId;
 			$('#left').append(element);
@@ -105,16 +112,36 @@ var getFiles = function (path){
 		}
 	});
 }
-$('.btn-set').click(function(){
-	alert('hello');
-});
+
 getFiles(getPathOfExtension()+"/resource/AEP");
 
-var xxxxx= function(state){
-	
-	
-	alert(state.getAttribute('toggle-state'));
+var xxxxx= function(element){
+	// alert(element.getAttribute('aria-expanded'));
 
+	// console.log(element.innerText + " "+ element.getAttribute('aria-expanded'));
+	if (element.getAttribute('toggle-state')==0) {
+			element.setAttribute('toggle-state','1');
+		$('.card.card-body.collapse').remove();
+		
+		// element.setAttribute('aria-expanded',"true");
+		var e = document.createElement("div");
+		e.setAttribute('id',"collapseExample");
+		e.classList.add('card','card-body','collapse');
+		// e.innerText="haha";
+		var e2 = document.createElement("button");
+		e2.classList.add('btn','button5');
+		e2.innerText="test";
+		e.append(e2);
+
+
+		$('#'+element.getAttribute('id')).after(e);
+	}else{
+		element.setAttribute('toggle-state','0');
+	}
+	
+
+	console.log($('#'+element.getAttribute('id')).parent());
+	// alert(element);
 }
 // console.log(getPathOfExtension()+"/resource/AEP");
 
