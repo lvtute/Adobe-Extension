@@ -6,7 +6,7 @@ Don't edit if you don't get certain knowledge about this.
 Might crash your Adobe host app.
 */
 laugh();
-lololol
+
 preventSystemCrash();
 
 // demo function to call jsx
@@ -48,28 +48,9 @@ var xxxxx= function(element){
 	}else{
 		element.setAttribute('toggle-state','0');
 	}
-	
 
-	// console.log($('#'+element.getAttribute('id')).parent());
-	// alert(element);
 }
-// console.log(getPathOfExtension()+"/resource/AEP");
 
-// getFiles(getPathOfExtension()+"/resource");
-
-// get JSX json
-// var getJSX = function(path){
-// 	path += "/presets";
-// 	var csInterface = new CSInterface();
-// 	csInterface.evalScript('getJsxFiles("'+ path +'")', function(res){
-// 		var paths = JSON.parse(res);
-// 	} );
-// 	setTimeout(function(){
-// 		console.log(paths);
-// 	}, 2000);
-// }
-
-// test button
 
 $("#btn-test2").click(function(){
 	var csInterface = new CSInterface();
