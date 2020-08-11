@@ -10,7 +10,6 @@ html, body {overflow: hidden}
 }
 #bottom-section {
     overflow: scroll;
-    scrollbar-width: thin;
 }
 .btn{
     margin: 0;
