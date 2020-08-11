@@ -6,6 +6,7 @@ Don't edit if you don't get certain knowledge about this.
 Might crash your Adobe host app.
 */
 laugh();
+lololol
 preventSystemCrash();
 
 // demo function to call jsx
