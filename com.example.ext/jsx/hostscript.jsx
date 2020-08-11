@@ -2,25 +2,10 @@
 /*global $, Folder*/
 
 // #include "json2.js"
+#include "utilities-back.jsx"
 
-function sayHello(){
-	alert("hello from ExtendScript");
-}
+// sayHello();
 
-function getFilesFromPath(path){
-	var thisFolder = Folder(path);
-	var files = thisFolder.getFiles();
-
-	var fullPaths = [];
-	for (var i =0; i<files.length; i++) {
-		// alert(files[i].fsName);
-		fullPaths.push(files[i].fsName);
-	}
-
-	alert (fullPaths.length);
-	return fullPaths;
-
-}
 
 function getLayerNames(arg) {
 	var layerNames = [];
@@ -64,7 +49,7 @@ function importAep(path){
 	var folder = Folder(path);
 	var files = folder.getFiles();
 	var aepFiles = [];
-
+	File()
 	for (var i = 0; i < files.length; i++) {
 		if (files[i].name.indexOf('.aep')!=-1) {
 			aepFiles.push(files[i].fsName);
