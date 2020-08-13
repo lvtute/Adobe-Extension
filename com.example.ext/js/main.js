@@ -5,7 +5,7 @@
 Don't edit if you don't get certain knowledge about this.
 Might crash your Adobe host app.
 */
-laugh();
+
 
 preventSystemCrash();
 
@@ -23,7 +23,7 @@ preventSystemCrash();
 }());
 
 // load the packages (on the left panel)
-loadPackFromPath(getPathOfExtension()+"/resource/AEP");
+loadPackFromPath();
 
 var xxxxx= function(element){
 	// alert(element.getAttribute('aria-expanded'));
@@ -55,7 +55,7 @@ var xxxxx= function(element){
 $("#btn-test2").click(function(){
 	var csInterface = new CSInterface();
 	csInterface.evalScript('importAep("'+getPathOfExtension()+"/resource/AEP/Blur"+'")');
-	console.log("haha"+getPathOfExtension()+"/resource/AEP/Blur");
+	// console.log("haha"+getPathOfExtension()+"/resource/AEP/Blur");
 });
 
 

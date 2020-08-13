@@ -54,54 +54,45 @@ var getPathOfExtension =function () {
 		slash = "/";
 		path = path.substring(8, path.length - 11);
 	}
-	console.log(path);
+	// console.log(path);
 	return path;
 };
 
-// when click on package name, will toggle/ delete then toggle the comp name list
-
-var xxxxx= function(element){
-	// alert(element.getAttribute('aria-expanded'));
-
-	// console.log(element.innerText + " "+ element.getAttribute('aria-expanded'));
+// when click on set name, will toggle/ delete then toggle the comp name list
+var setOnClick= function(element){
+	
+	alert(element.innerText);
 	if (element.getAttribute('toggle-state')==0) {
 			element.setAttribute('toggle-state','1');
 		$('.card.card-body.collapse').remove();
-		
-		// element.setAttribute('aria-expanded',"true");
+	
 		var e = document.createElement("div");
 		e.setAttribute('id',"collapseExample");
 		e.classList.add('card','card-body','collapse');
-		// e.innerText="haha";
+	
 		var e2 = document.createElement("button");
 		e2.classList.add('btn','button5');
 		e2.innerText="test";
 		e.append(e2);
-
-
 		$('#'+element.getAttribute('id')).after(e);
 	}else{
 		element.setAttribute('toggle-state','0');
 	}
-	
-
-	// console.log($('#'+element.getAttribute('id')).parent());
-	// alert(element);
 }
 
 // load package from path
 function loadPackFromPath(path){
 	var csInterface = new CSInterface();
-	csInterface.evalScript('getFilesFromPath("' + path + '")', function(res){
-		path = path.replace(/\//g,"\\");
-		console.log("path: "+path);
-		console.log("res: "+res);
+	// "' + path + '"
+	csInterface.evalScript('getAllSets()', function(res){
+		
+
 		var resultArray = res.split(",");
-		console.log(resultArray);
+		
 		$(".set-holder").empty();
 		for (var i = 0; i < resultArray.length; i++) {
-			// if (i==0) {continue;}
-			var tempId = resultArray[i].replace(path+"\\","");
+			
+			var tempId = resultArray[i];
 			var element = document.createElement("button");
 			// alert(tempId.replace(" ",""));
 			element.setAttribute('id', "set"+tempId.replace(" ",""));
@@ -115,9 +106,9 @@ function loadPackFromPath(path){
 			element.setAttribute('data-target','#collapseExample');
 			element.setAttribute('aria-expanded','false');
 			// element.setAttribute('onClick','xxxxx("haha")');
-			element.setAttribute('onClick','xxxxx('+element.getAttribute("id")+')');
+			element.setAttribute('onClick','setOnClick('+element.getAttribute("id")+')');
 
-			console.log("element "+i+"("+tempId+")"+" has been given an onClcik");
+			// console.log("element "+i+"("+tempId+")"+" has been given an onClcik");
 			// console.log(element);
 			element.setAttribute('aria-controls','collapseExample');
 			element.innerText = tempId;
