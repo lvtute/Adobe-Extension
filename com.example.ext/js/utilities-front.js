@@ -1,7 +1,7 @@
 function laugh (){
 	alert("hahaha!");
 }
-
+var csInterfaceGlobal = new CSInterface();
 function getOS() {
 	var userAgent = window.navigator.userAgent,
 	platform = window.navigator.platform,
@@ -59,61 +59,83 @@ var getPathOfExtension =function () {
 };
 
 // when click on set name, will toggle/ delete then toggle the comp name list
-var setOnClick= function(element){
+
+
+
+
+function createSetHeader(setname){
+	var setNameWithoutSpace = setname.replace(" ","");
+	var divPanel = document.createElement("div");
+	divPanel.classList.add("panel", "panel-default");
+	divPanel.setAttribute("style", "margin-top:0;");
+	divPanel.setAttribute("id","panel-header"+setNameWithoutSpace);
+	var h4 = document.createElement("h4");
+	h4.classList.add("panel-title","collapsed","panel-heading");
+	h4.innerText = setname;
+	h4.setAttribute("id", "h4-"+setNameWithoutSpace);
+	h4.setAttribute("data-toggle", "collapse");
+	h4.setAttribute("data-parent","#accordion");
+	h4.setAttribute("href","#collapse"+setNameWithoutSpace);
+	h4.setAttribute("aria-expanded","false");
 	
-	alert(element.innerText);
-	if (element.getAttribute('toggle-state')==0) {
-			element.setAttribute('toggle-state','1');
-		$('.card.card-body.collapse').remove();
-	
-		var e = document.createElement("div");
-		e.setAttribute('id',"collapseExample");
-		e.classList.add('card','card-body','collapse');
-	
-		var e2 = document.createElement("button");
-		e2.classList.add('btn','button5');
-		e2.innerText="test";
-		e.append(e2);
-		$('#'+element.getAttribute('id')).after(e);
-	}else{
-		element.setAttribute('toggle-state','0');
-	}
+	divPanel.setAttribute('onClick','loadAepToCollapsedPanel("'+divPanel.getAttribute("id")+'")');
+	divPanel.append(h4);
+	return divPanel;
 }
 
-// load package from path
-function loadPackFromPath(path){
-	var csInterface = new CSInterface();
-	// "' + path + '"
-	csInterface.evalScript('getAllSets()', function(res){
-		
+function loadAepToCollapsedPanel(id){
 
-		var resultArray = res.split(",");
-		
-		$(".set-holder").empty();
-		for (var i = 0; i < resultArray.length; i++) {
+	console.log(id);
+	element = document.getElementById(id);
+	console.log(element);
+	csInterfaceGlobal.evalScript('getAllAepFromSet("'+element.firstChild.innerText+'")', function(res){
+		result = res.split(",");
+
+		var button;
+		for (var i = 0; i < result.length; i++) {
+			button = createAepButton(result[i], document.getElementById(id).firstChild.innerText.replace(" ",""));
 			
-			var tempId = resultArray[i];
-			var element = document.createElement("button");
-			// alert(tempId.replace(" ",""));
-			element.setAttribute('id', "set"+tempId.replace(" ",""));
-			// alert(element.getAttribute('id'));
-			// element.setAttribute('toggle-state','0');
-			element.setAttribute('pos',i);
-			element.classList.add('btn','btn-primary');
-			element.setAttribute('type','button');
-			element.setAttribute('toggle-state','0');
-			element.setAttribute('data-toggle','collapse');
-			element.setAttribute('data-target','#collapseExample');
-			element.setAttribute('aria-expanded','false');
-			// element.setAttribute('onClick','xxxxx("haha")');
-			element.setAttribute('onClick','setOnClick('+element.getAttribute("id")+')');
-
-			// console.log("element "+i+"("+tempId+")"+" has been given an onClcik");
-			// console.log(element);
-			element.setAttribute('aria-controls','collapseExample');
-			element.innerText = tempId;
-			$('#left').append(element);
-
+			document.getElementById(id.replace("panel-header","panel-body-")).append(button);
 		}
 	});
+}
+
+function createSetCollapsePanel(setname){
+	var divCollapse = document.createElement("div");
+	var setNameWithoutSpace = setname.replace(" ","");
+	divCollapse.setAttribute("id","collapse"+setNameWithoutSpace);
+	divCollapse.classList.add("panel-collapse", "collapse");
+
+	var divPanelBody = document.createElement("div");
+	divPanelBody.classList.add("panel-body");
+	// divPanelBody.innerText = setname;
+	divPanelBody.setAttribute("id", "panel-body-"+setNameWithoutSpace);
+
+	divCollapse.append(divPanelBody);
+	return divCollapse;
+
+}
+function loadSets(){
+
+	csInterfaceGlobal.evalScript('getAllSets()', function(res){
+		var setsArray = res.split(",");
+		var element;
+		for (var i = 0; i < setsArray.length; i++) {
+			element = createSetHeader(setsArray[i]);
+			element2 = createSetCollapsePanel(setsArray[i]);
+			element.append(element2);
+			$('.panel-group').append(element);
+		}
+	});
+}
+// <button type="button" class="btn btn-info">Info</button>
+function createAepButton(aep_name, set_name){
+
+	var button = document.createElement("button");
+	button.classList.add("btn","btn-info","btn"+set_name);
+	button.setAttribute("type", "button");
+	button.innerText= aep_name;
+	button.setAttribute("id", aep_name.replace(" ","").replace(".","-"));
+
+	return button;
 }
