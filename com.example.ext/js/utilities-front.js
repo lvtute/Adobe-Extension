@@ -39,29 +39,25 @@ function preventSystemCrash(){
 }
 
 
-// get path of the current Extension
-var getPathOfExtension =function () {
-	'use strict';
-	var favsList = [];
-	var favsIndices = [];
-	var path, slash;
-	path = location.href;
-	if(getOS() == "MAC") {
-		slash = "/";
-		path = path.substring(0, path.length - 11);
-	}
-	if(getOS() == "WIN") {
-		slash = "/";
-		path = path.substring(8, path.length - 11);
-	}
-	// console.log(path);
-	return path;
-};
+function loadAepToCollapsedPanel(id){
 
-// when click on set name, will toggle/ delete then toggle the comp name list
-
-
-
+	console.log(id);
+	element = document.getElementById(id);
+	console.log(element);
+	csInterfaceGlobal.evalScript('getAllAepFromSet("'+element.firstChild.innerText+'")', function(res){
+		result = res.split(",");
+		var buttonContainer =  document.getElementById(id.replace("panel-header","panel-body-"));
+		while (buttonContainer.firstChild) {
+			buttonContainer.removeChild(buttonContainer.firstChild);
+		}
+		var button;
+		for (var i = 0; i < result.length; i++) {
+			button = createAepButton(result[i], document.getElementById(id).firstChild.innerText.replace(" ",""));
+			
+			document.getElementById(id.replace("panel-header","panel-body-")).append(button);
+		}
+	});
+}
 
 function createSetHeader(setname){
 	var setNameWithoutSpace = setname.replace(" ","");
@@ -83,22 +79,6 @@ function createSetHeader(setname){
 	return divPanel;
 }
 
-function loadAepToCollapsedPanel(id){
-
-	console.log(id);
-	element = document.getElementById(id);
-	console.log(element);
-	csInterfaceGlobal.evalScript('getAllAepFromSet("'+element.firstChild.innerText+'")', function(res){
-		result = res.split(",");
-
-		var button;
-		for (var i = 0; i < result.length; i++) {
-			button = createAepButton(result[i], document.getElementById(id).firstChild.innerText.replace(" ",""));
-			
-			document.getElementById(id.replace("panel-header","panel-body-")).append(button);
-		}
-	});
-}
 
 function createSetCollapsePanel(setname){
 	var divCollapse = document.createElement("div");

@@ -1,18 +1,33 @@
 
-.panel{
+#config-panel{
+    position: absolute;
+    right: 0;
+    top: 0;
     padding: 0;
     margin: 0;
+    text-align: right;
+    background-color: black;
 }
+#config-panel>button{
+    margin: 0.5px;
+
+}
+
 html, body {overflow: hidden;}
 #left, .left{
 
     padding: 0;
 }
 #right {
+    padding: 50px;
     height: 50%;
+    overflow: auto;
+    position: fixed;
+    right: 0px;
 }
 #bottom-section {
     overflow: scroll;
+    /*position: relative;*/
 }
 .btn{
     margin: 0;
