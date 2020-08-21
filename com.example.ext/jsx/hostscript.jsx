@@ -7,36 +7,50 @@
 #include "XmlUtilities.jsx"
 
 var xmlRoot = XML("<root></root>");
-var props = this.reflect.methods;
-
 
 
 
 
 // called when applicaiton start
+// var getAllSets;
 function getAllSets(){ // for front to call
-
-	
-	var result = [];
-	
-	for(var i=0; i<ALL_SET_FOLDER.length; i++){
-		result.push(File.decode(ALL_SET_FOLDER[i].name));
+	// alert("i was called");
+	//alert(xmlRoot.children().text().length());
+	var result = "";
+	for(var i=0; i< xmlRoot.children().text().length(); i++){
+		
+		result+=xmlRoot.children().text()[i].toString()+",";
+		//alert(result);
 	}
-	return result;
+
+	// return "a,b,n,gre,we,rtqwe,rqw";
+	// alert(result);
+	return result.slice(0,result.length-1);
 }
 
 
 // called when user click on a set name
 function getAllAepFromSet(set_name){
-	var setFolder = getPositionOfFolder(ALL_SET_FOLDER,set_name);
-	var result = [];
-	var allFiles = setFolder.getFiles();
-	allFiles = filterFilesByFileType(allFiles,".aep");
-	for (var i=0; i< allFiles.length;i++){
-		result.push(File.decode(allFiles[i].name));
+	
+	var result = xmlRoot.children();
+	for (var i = 0; i < result.length(); i++) {
+		if(result[i].text().toString()==set_name){
+			result = result[i];
+			break;
+		}
 	}
 
-	return result;
+
+	result = result.child("aep");
+	alert(result);
+	var realResult = "";
+	for (var i = 0; i < result.length(); i++) {
+		realResult += result.text()[i].toString()+",";
+	}
+	realResult = realResult.slice(0, realResult.length-1);
+	alert(realResult);
+	return realResult;
+
 }
 
   // importListFile();

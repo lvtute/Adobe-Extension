@@ -96,8 +96,9 @@ function createSetCollapsePanel(setname){
 
 }
 function loadSets(){
-
+$( ".panel-group" ).empty();
 	csInterfaceGlobal.evalScript('getAllSets()', function(res){
+		alert(res);
 		var setsArray = res.split(",");
 		var element;
 		for (var i = 0; i < setsArray.length; i++) {
@@ -121,6 +122,17 @@ function createAepButton(aep_name, set_name){
 }
 $("#btn-import").click(function(){
 
-	csInterfaceGlobal.evalScript('importListFile()');
-	console.log("button import clicked");
-})
+	var nothing =0;
+	doImport(nothing, function(res){
+		alert("load sets again!");
+		loadSets();
+	});
+	function doImport(nothing, callback){
+		csInterfaceGlobal.evalScript('importListFile()', function(res){
+			callback(res);
+		});
+		
+	}
+	// csInterfaceGlobal.evalScript('importListFile()');
+	
+});

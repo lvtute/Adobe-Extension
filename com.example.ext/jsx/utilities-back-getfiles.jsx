@@ -1,33 +1,7 @@
 
 
-var packFolder = "~/Downloads/Motion Bro Free Pack/FREE";
-var ALL_FOLDERS_IN_PACK = getFilesFromPath(packFolder,"folder");
- // Folder objects array
-var ALL_SET_FOLDER = getSetFoldersOnly(ALL_FOLDERS_IN_PACK);
 
 
-
-
-function getSetFoldersOnly(folder_array){
-	var result  = folder_array;
-	// alert("result: "+result.toString());
-	var positionsToRemove=[];
-	for(var i=0; i<result.length; i++){
-
-	
-		if (!isSetFolder(result[i].name)) {
-			
-			positionsToRemove.push(i);
-		}
-	}
-	
-	while (positionsToRemove.length>0) {
-		
-		result.splice(positionsToRemove.pop(),1);
-	}
-	
-	return result;
-}
 
 
 
@@ -45,36 +19,36 @@ function isSetFolder(folder_name){
 
 // ------------------------------------------
 // get all files from a path.
-function getFilesFromPath(path, name_or_fullname_or_folder){
+/*	function getFilesFromPath(path, name_or_fullname_or_folder){
+			
+
+		var thisFolder = Folder(path);
+		var files = thisFolder.getFiles();
+
+		var fullPaths = [];
+		if (name_or_fullname_or_folder=="name") {
+			for (var i =0; i<files.length; i++) {
+			
+			fullPaths.push(File.decode(files[i].name));
+			}
+		}else if (name_or_fullname_or_folder=="fullName"){
+			for (var i =0; i<files.length; i++) {
+			
+			fullPaths.push(files[i].fullName);
+			}
+		} else if(name_or_fullname_or_folder == "folder"){
+			for (var i =0; i<files.length; i++) {
+			
+			fullPaths.push(files[i]);
+			}
+		} 
+		else {
+			alert("getFilesFromPath() => please pass an valid name_or_fullname argument");
+		}
 		
 
-	var thisFolder = Folder(path);
-	var files = thisFolder.getFiles();
-
-	var fullPaths = [];
-	if (name_or_fullname_or_folder=="name") {
-		for (var i =0; i<files.length; i++) {
-		
-		fullPaths.push(File.decode(files[i].name));
-		}
-	}else if (name_or_fullname_or_folder=="fullName"){
-		for (var i =0; i<files.length; i++) {
-		
-		fullPaths.push(files[i].fullName);
-		}
-	} else if(name_or_fullname_or_folder == "folder"){
-		for (var i =0; i<files.length; i++) {
-		
-		fullPaths.push(files[i]);
-		}
-	} 
-	else {
-		alert("getFilesFromPath() => please pass an valid name_or_fullname argument");
-	}
-	
-
-	return fullPaths;
-}
+		return fullPaths;
+	}*/
 
 function getPositionOfFolder(folder_array,name_to_get){
 	var result = undefined;

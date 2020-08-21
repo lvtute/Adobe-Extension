@@ -22,7 +22,7 @@ Might crash your Adobe host app.
 	init();
 }());
 
-loadSets();
+
 // load the packages (on the left panel)
 // loadPackFromPath();
 
@@ -35,8 +35,21 @@ $("#btn-test2").click(function(){
 	csInterface.evalScript('importAep("'+getPathOfExtension()+"/resource/AEP/Blur"+'")');
 	// console.log("haha"+getPathOfExtension()+"/resource/AEP/Blur");
 });
-var cs = new CSInterface();
-var extensionPath = cs.getSystemPath(SystemPath.EXTENSION);
-console.log(extensionPath);
-cs.evalScript('initializeExtensionPath("'+extensionPath+'")');
+
+
+var nothing=0;
+xxxx(nothing, function(res){
+	var cs = new CSInterface();
+	loadSets();
+});
+
+function xxxx(nothing, callback){
+	var cs = new CSInterface();
+	var extensionPath = cs.getSystemPath(SystemPath.EXTENSION);
+	cs.evalScript('initializeExtensionPath("'+extensionPath+'")', function(res){
+		
+		callback(res);
+	});
+}
+
 
