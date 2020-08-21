@@ -21,9 +21,10 @@ html, body {overflow: hidden;}
 #right {
     padding: 50px;
     height: 50%;
-    overflow: auto;
+    
     position: fixed;
     right: 0px;
+
 }
 #bottom-section {
     overflow: scroll;
@@ -55,6 +56,12 @@ html, body {overflow: hidden;}
 
 
 #right{
-    background: yellow;
+    /*background: yellow;*/
     z-index: 0;
 }
+
+.btn-comp{
+    display: inline-block;
+    width: auto;
+   margin: 10px 6px;
+   }

@@ -96,9 +96,9 @@ function createSetCollapsePanel(setname){
 
 }
 function loadSets(){
-$( ".panel-group" ).empty();
+	$( ".panel-group" ).empty();
 	csInterfaceGlobal.evalScript('getAllSets()', function(res){
-		alert(res);
+		// alert(res);
 		var setsArray = res.split(",");
 		var element;
 		for (var i = 0; i < setsArray.length; i++) {
@@ -117,21 +117,56 @@ function createAepButton(aep_name, set_name){
 	button.setAttribute("type", "button");
 	button.innerText= aep_name;
 	button.setAttribute("id", aep_name.replace(" ","").replace(".","-"));
+	button.setAttribute('onClick','onCompClick("'+button.innerText+'")');
+
 
 	return button;
 }
+function onCompClick(aepName){
+	// alert(compName);
+	var nothing =0;
+	doLoadComp(nothing, function(res){
+		// alert("load sets again!");
+		loadComps(res);
+	});
+	function doLoadComp(nothing, callback){
+		csInterfaceGlobal.evalScript('getCompsByAepName("'+aepName+'")', function(res){
+			callback(res);
+		});
+		
+	}
+}
+function loadComps(compList){
+	$( "#right" ).empty();
+	var compsArray = compList.split(",");
+	var element;
+	for (var i = 0; i < compsArray.length; i++) {
+		element = createCompButton(compsArray[i]);
+
+		$('#right').append(element);
+	}
+}
+function createCompButton(compName){
+	var compButton = document.createElement("button");
+	compButton.innerText = compName;
+	compButton.classList.add("btn","btn-success","btn-comp");
+	compButton.setAttribute("type", "button");
+	return compButton;
+}
+
+
 $("#btn-import").click(function(){
 
 	var nothing =0;
 	doImport(nothing, function(res){
-		alert("load sets again!");
+		// alert("load sets again!");
 		loadSets();
 	});
 	function doImport(nothing, callback){
 		csInterfaceGlobal.evalScript('importListFile()', function(res){
 			callback(res);
 		});
-		
+
 	}
 	// csInterfaceGlobal.evalScript('importListFile()');
 	

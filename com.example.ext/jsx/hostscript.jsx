@@ -50,7 +50,32 @@ function getAllAepFromSet(set_name){
 	realResult = realResult.slice(0, realResult.length-1);
 	alert(realResult);
 	return realResult;
+	
 
+}
+
+function getCompsByAepName(aepName){
+	var result="";
+	var resultxml;
+	var xml = xmlRoot.descendants("aep");
+	for(var i=0; i< xml.length(); i++){
+		if (xml[i].text().toString()==aepName) {
+			resultxml = xml[i];
+			break;
+		}
+	}
+	//alert(resultxml.child("preview"));
+	for (var i =0; i< resultxml.child("preview").length(); i++){
+		var compName =  resultxml.child("preview")[i].text().toString().replace("preview","");
+		var lastDot = compName.lastIndexOf(".");
+
+		result += compName.slice(0, lastDot)+",";
+	}
+	//alert(result);
+	result = result.slice(0, result.length-1);
+	
+
+	return result;
 }
 
   // importListFile();
