@@ -119,3 +119,8 @@ function createAepButton(aep_name, set_name){
 
 	return button;
 }
+$("#btn-import").click(function(){
+
+	csInterfaceGlobal.evalScript('importListFile()');
+	console.log("button import clicked");
+})

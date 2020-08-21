@@ -7,8 +7,15 @@
 #include "XmlUtilities.jsx"
 
 var xmlRoot = XML("<root></root>");
+var props = this.reflect.methods;
+
+
+
+
+
 // called when applicaiton start
 function getAllSets(){ // for front to call
+
 	
 	var result = [];
 	
@@ -32,4 +39,4 @@ function getAllAepFromSet(set_name){
 	return result;
 }
 
-  importListFile();
+  // importListFile();

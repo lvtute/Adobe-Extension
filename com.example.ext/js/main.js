@@ -35,5 +35,8 @@ $("#btn-test2").click(function(){
 	csInterface.evalScript('importAep("'+getPathOfExtension()+"/resource/AEP/Blur"+'")');
 	// console.log("haha"+getPathOfExtension()+"/resource/AEP/Blur");
 });
-
+var cs = new CSInterface();
+var extensionPath = cs.getSystemPath(SystemPath.EXTENSION);
+console.log(extensionPath);
+cs.evalScript('initializeExtensionPath("'+extensionPath+'")');
 
