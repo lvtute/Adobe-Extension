@@ -11,7 +11,9 @@
 #config-panel>button{
     margin: 0.5px;
 
+
 }
+
 
 html, body {overflow: hidden;}
 #left, .left{
@@ -64,11 +66,20 @@ html, body {overflow: hidden;}
     display: inline-block;
     width: auto;
    margin: 10px 6px;
+   background: none;
+   border: white 1px solid;
+   color:white;
    }
+.btn-comp:hover{
+    border: #00fe7d 1px solid;
+    color:#00fe7d;
+    background: none;
+}
 
 #top-section{
     /*background: red;*/
     padding: 2% 6%;
+
 
 }
 #video-section{
@@ -79,4 +90,9 @@ html, body {overflow: hidden;}
 }
 #video1{
     position: ;
+}
+#comp-button-panel{
+    height: 100%;
+    width: 100%;
+    
 }

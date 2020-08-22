@@ -117,12 +117,12 @@ function createAepButton(aep_name, set_name){
 	button.setAttribute("type", "button");
 	button.innerText= aep_name;
 	button.setAttribute("id", aep_name.replace(" ","").replace(".","-"));
-	button.setAttribute('onClick','onCompClick("'+button.innerText+'")');
+	button.setAttribute('onClick','onAepClick("'+button.innerText+'")');
 
 
 	return button;
 }
-function onCompClick(aepName){
+function onAepClick(aepName){
 	// alert(compName);
 	var nothing =0;
 	doLoadComp(nothing, function(res){
@@ -137,20 +137,22 @@ function onCompClick(aepName){
 	}
 }
 function loadComps(compList){
-	$( "#right" ).empty();
+	$( "#comp-button-panel" ).empty();
 	var compsArray = compList.split(",");
 	var element;
 	for (var i = 0; i < compsArray.length; i++) {
 		element = createCompButton(compsArray[i]);
 
-		$('#right').append(element);
+		$('#comp-button-panel').append(element);
 	}
 }
 function createCompButton(compName){
 	var compButton = document.createElement("button");
+
 	compButton.innerText = compName;
-	compButton.classList.add("btn","btn-success","btn-comp");
+	compButton.classList.add("btn","btn-comp");
 	compButton.setAttribute("type", "button");
+	compButton.setAttribute('onClick','onCompClick("'+compButton.innerText+'")');
 	return compButton;
 }
 
