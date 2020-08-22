@@ -96,3 +96,13 @@ html, body {overflow: hidden;}
     width: 100%;
     
 }
+.btn-image{
+    width: 160px;
+    height: 100px;
+    opacity: 0.5;
+
+}
+.btn-image:hover{
+    opacity: 1;
+    border: 1px solid #00fe7d;
+}

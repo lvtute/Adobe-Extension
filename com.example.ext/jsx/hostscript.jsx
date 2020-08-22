@@ -58,7 +58,8 @@ function getCompsByAepName(aepName){
 	var isImage = false;
 	
 
-	var result="";
+	var result1="";
+	var result2 = "";
 	var resultxml;
 	var xml = xmlRoot.descendants("aep");
 	alert("xml"+xml);
@@ -71,18 +72,25 @@ function getCompsByAepName(aepName){
 	//alert(resultxml.child("preview"));
 	for (var i =0; i< resultxml.child("preview").length(); i++){
 		
-		result += resultxml.child("preview")[i].text().toString()+",";
+		var previewXml = resultxml.child("preview")[i];
+		// alert(previewXml+ previewXml.@path);
+		if(File(previewXml.@path.toString().replace("mp4","png")).exists){
+			result1 += resultxml.child("preview")[i].@path.toString().replace("mp4","png")+",";
+			continue;
+		}
+		result1 += resultxml.child("preview")[i].@path.toString()+",";
+
 
 	}
 
-	result = result.slice(0, result.length-1);
+	result1 = result1.slice(0, result1.length-1);
 	
 
-	return result;
+	return result1;
 }
 function getPreviewFromName(name){
 	var myxml = xmlRoot.descendants("preview");
-	alert(name);
+	// alert(name);
 	alert("myxml"+myxml[1].toString());
 	for (var i = 0; i < myxml.length(); i++) {
 		if (myxml[i].text().toString()==name) {
@@ -91,4 +99,5 @@ function getPreviewFromName(name){
 	
 	}
 }
+
   // importListFile();}

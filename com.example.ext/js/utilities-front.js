@@ -1,6 +1,18 @@
 function laugh (){
 	alert("hahaha!");
 }
+var username = "lvtut";
+
+// getOs(0, function(res){
+		
+// 		loadComps(res);
+// 	});
+// function getOs(nothing, callback){
+// 	csInterfaceGlobal.evalScript('getCompsByAepName("'+aepName+'")', function(res){
+// 		callback(res);
+// 	});
+
+// }
 var csInterfaceGlobal = new CSInterface();
 function getOS() {
 	var userAgent = window.navigator.userAgent,
@@ -138,10 +150,16 @@ function onAepClick(aepName){
 }
 function loadComps(compList){
 	$( "#comp-button-panel" ).empty();
+
 	var compsArray = compList.split(",");
 	var element;
 	for (var i = 0; i < compsArray.length; i++) {
-		element = createCompButton(compsArray[i]);
+		if (compsArray[i].indexOf(".png")!=-1) {
+			element = createCompImageButton(compsArray[i]);
+		} else{
+			element = createCompButton(compsArray[i]);
+
+		}
 
 		$('#comp-button-panel').append(element);
 	}
@@ -156,10 +174,25 @@ function createCompButton(compName){
 	return compButton;
 }
 
+function createCompImageButton(compName){
+	var compButton = document.createElement("img");
+	var src = "file:///";
+	src += compName;
+	//alert(src);
+	
+	src = src.replace("~","C:/Users/"+username);
+	//alert(src);
+	compButton.setAttribute("src",src);
+	compButton.classList.add("btn","btn-image");
+	compButton.background = 
+	compButton.setAttribute("type", "button");
+	compButton.setAttribute('onClick','onCompClick("'+compName+'")');
+	return compButton;
+}
 
 $("#btn-import").click(function(){
 
-	var nothing =0;
+	var nothing = 0;
 	doImport(nothing, function(res){
 		// alert("load sets again!");
 		loadSets();

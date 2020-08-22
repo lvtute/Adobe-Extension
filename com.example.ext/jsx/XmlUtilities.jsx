@@ -82,6 +82,7 @@ function initializeExtensionPath(path){
   //alert(xmlRoot.children().length());
 
   // alert(xmlRoot.children().text().length());
+ // alert(xmlRoot);
   return true;
  
 }
@@ -113,10 +114,16 @@ function loadXmlRoot(){
     if(listFile.exists){
      $.evalFile(listFile);
      var newXML  = XMLList(b24f6aad44c60b4d37abf90dc3a0d80e577d79a20d823324bd140d4f257815a8);
+     for (var i = 0; i < newXML.descendants().length(); i++) {
+      alert(i);
+      newXML.descendants()[i].@path = listFile.parent;
+            alert(newXML);
+     }
      xmlRoot.appendChild(newXML);
 
 
    }
+
  }
 
 
