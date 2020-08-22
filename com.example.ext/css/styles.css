@@ -65,3 +65,18 @@ html, body {overflow: hidden;}
     width: auto;
    margin: 10px 6px;
    }
+
+#top-section{
+    /*background: red;*/
+    padding: 2% 6%;
+
+}
+#video-section{
+    height: 100%;
+    width: 100%;
+    /*background-color: green;*/
+    text-align: center;
+}
+#video1{
+    position: ;
+}
