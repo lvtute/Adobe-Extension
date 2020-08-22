@@ -48,17 +48,17 @@
 					<Menu>Extension-Namezzz</Menu>
 					<Geometry>
 						<Size>
-							<Height>300</Height>
+							<Height>200</Height>
 							<Width>150</Width>
 						</Size>
                     <!-- <MinSize>
                             <Height>550</Height>
                             <Width>400</Width>
                         </MinSize> -->
-                        <MaxSize>
-                            <Height>300</Height>
+                       <!--  <MaxSize>
+                            <Height>500</Height>
                             <Width>400</Width>
-                        </MaxSize>
+                        </MaxSize> -->
                         
 					</Geometry>
 					<Icons>

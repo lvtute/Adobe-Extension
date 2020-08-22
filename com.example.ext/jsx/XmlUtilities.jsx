@@ -128,7 +128,7 @@ function loadXmlRoot(){
    for(var x =0; x < xmlRoot.child("set").length();x++){
         xmlRoot.child("set")[x].@path = listFile.parent;
      }
-     alert(xmlRoot);
+     // alert(xmlRoot);
 
  }
 

@@ -139,6 +139,7 @@ function onAepClick(aepName){
 	var nothing =0;
 	doLoadComp(nothing, function(res){
 		// alert("load sets again!");
+		
 		loadComps(res);
 	});
 	function doLoadComp(nothing, callback){
@@ -150,7 +151,7 @@ function onAepClick(aepName){
 }
 function loadComps(compList){
 	$( "#comp-button-panel" ).empty();
-
+	// alert(compList);
 	var compsArray = compList.split(",");
 	var element;
 	for (var i = 0; i < compsArray.length; i++) {
@@ -166,28 +167,75 @@ function loadComps(compList){
 }
 function createCompButton(compName){
 	var compButton = document.createElement("button");
-
+	
+	compName = compName.replace(/\\/g, "/");
+	path = compName;
+	compButton.setAttribute("path", compName);
+	var lastSlash = compName.lastIndexOf("/");
+	var lastDot = compName.lastIndexOf(".");
+	compName = compName.slice(lastSlash+1, lastDot);
 	compButton.innerText = compName;
+
 	compButton.classList.add("btn","btn-comp");
 	compButton.setAttribute("type", "button");
-	compButton.setAttribute('onClick','onCompClick("'+compButton.innerText+'")');
+	compButton.setAttribute('onClick','onCompClick("'+compButton.getAttribute("path")+'")');
+	compButton.setAttribute('ondblclick','onCompDoubleClick("'+path+'")');
 	return compButton;
 }
 
 function createCompImageButton(compName){
+
 	var compButton = document.createElement("img");
-	var src = "file:///";
-	src += compName;
-	//alert(src);
-	
-	src = src.replace("~","C:/Users/"+username);
-	//alert(src);
-	compButton.setAttribute("src",src);
+	compButton.setAttribute("path", compName.replace(".png",".mp4"));
+	var path = compName.replace(".png",".mp4");
+
+	path =path.replace(/\\/g, "/");
+
+	// alert(path);
+	compButton.setAttribute("src", compName);
+
 	compButton.classList.add("btn","btn-image");
-	compButton.background = 
+
 	compButton.setAttribute("type", "button");
-	compButton.setAttribute('onClick','onCompClick("'+compName+'")');
+	compButton.setAttribute('onClick','onCompClick("'+path+'")');
+	compButton.setAttribute('ondblclick','onCompDoubleClick("'+path+'")');
+
 	return compButton;
+}
+function onCompClick(path){
+	//console.log(path);
+	// alert(checkFileExists(path));
+	// if (checkFileExists(path)) {
+	// 	alert("File "+path+" doesn't exist. Please check again or contact us for error reporting. Thanks.");
+	// 	return;
+	// }
+	var video = document.getElementsByTagName('video')[0];
+    var sources = video.getElementsByTagName('source')[0];
+    sources.src = path;
+
+    video.load();
+    video.play();
+
+	// $("#video-source").attr("src",path);
+	// console.log(checkFileExists(path));
+	// console.log($("#video-source").prop("src"));
+	// $("#video1").get(0).play();
+}
+function onCompDoubleClick(path){
+	console.log(path);
+	path = path.slice(path.lastIndexOf("/")+1,path.length);
+	//alert(path);
+
+	doApplyComp(nothing, function(res){
+		// alert("load sets again!");
+		alert(res);
+	});
+	function doApplyComp(nothing, callback){
+		csInterfaceGlobal.evalScript('applyComp("'+path+'")', function(res){
+			callback(res);
+		});
+
+	}
 }
 
 $("#btn-import").click(function(){
@@ -206,3 +254,33 @@ $("#btn-import").click(function(){
 	// csInterfaceGlobal.evalScript('importListFile()');
 	
 });
+
+function checkFileExists(path){
+	// $.ajax({
+ //    url:path,
+ //    type:'HEAD',
+ //    error: function()
+ //    {
+ //        return false;
+ //    },
+ //    success: function()
+ //    {
+ //        return true;
+ //    }
+	// });
+	$.get(path)
+    .done(function() { 
+        return true;
+    }).fail(function() { 
+        return false;
+    })
+}
+$('video').click(function() {
+				  if (this.paused == false) {
+				      this.pause();
+				     // alert('music paused');
+				  } else {
+				      this.play();
+				     // alert('music playing');
+				  }
+				});

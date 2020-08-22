@@ -8,63 +8,50 @@
 
 	<title>Hello</title>
 	<style>
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
 
-/* Track */
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
-  border-radius: 10px;
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: red; 
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #b30000; 
-}
-</style>
+	</style>
 </head>
 
-<body >
+<body style="background: #607D8B;">
 
-	<div class="container-fluid" style="height: 600px; background: #607D8B;">
+	<div class="container-fluid" style="height: auto; ">
 		<div id="top-section" class="row" style="height: 35%; min-height: 270px;">
 			<div id="video-section">
-				<video id="video1" width="480" height="270">
-					<source src="C:\Users\lvtut\Videos\demo2.mp4" type="video/mp4">
-							
-						</video>
+				<video id="video1"  loop>
+					<source id="video-source" src="C:/Users/lvtut/Documents/FREE/Preview/3D Pan/Edge-preview2.mp4" type="video/mp4">
 
-					</div>
-				</div>
-				<div id="bottom-section" class="row" style="height: 65%;">
+					</video>
 
-
-					<div class="col-xs-6 col-md-4 left panel-group" id="accordion"  ></div>
-
-					<div class=" col-xs-6 col-md-8" id="right">
-						<div id="comp-button-panel"></div>
-						<div id="config-panel" style="z-index: 100;" class="row">
-							<button  class="btn-config"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-							<button id="btn-import" class="btn-config"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></button>
-						</div>
+<!-- <video width="180" height="120" poster="C:\Users\lvtut\Documents\FREE\Preview\3D Pan\Edge-preview1.png">
+ 
+</video> -->
 
 
-					</div>
 				</div>
 			</div>
-			<script>
-				var myVideo = document.getElementById("video1");
+			<div id="bottom-section" class="row" style="height: 65%;">
+
+
+				<div class="col-xs-6 col-md-4 left panel-group" id="accordion" ></div>
+
+				<div class=" col-xs-6 col-md-8" id="right">
+				
+					<div id="comp-button-panel" style="overflow: auto;"></div>
+					<div id="config-panel" style="z-index: 100;" class="row">
+						<button  class="btn-config"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+						<button id="btn-import" class="btn-config"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></button>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+		<script>
+			var myVideo = document.getElementById("video1");
 				// myVideo.addEventListener("click", myFunction);
 				// myFunction(myVideo.play());
 				myVideo.play();
+				
 			</script>
 			<script src="js/libs/CSInterface.js"></script>
 
