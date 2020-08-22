@@ -1,15 +1,20 @@
-﻿     
-           var packageFolder;
+﻿             var packageFolder;
+            var listFile;
+   
+             
      var createFile = function(){
 
-
+   
+          
+            
             packageFolder = Folder.selectDialog();
-
+          
+            
             if(!File(packageFolder.fullName+"/Preview").exists){
                 alert ("The chosen folder is not a valid package folder, please try again", "Import failed", true);
                 
             }
-       
+         listFile =  File(packageFolder.fullName+"/"+File.decode(packageFolder.name)+".list");
             var temp = makeTag("package");
 
             var myRoot = temp;
@@ -29,17 +34,18 @@
                             for(var j=0; j<setFolder.getFiles().length;j++){
                                 var aepFile = setFolder.getFiles()[j].name;
                                 
-                                    if(isValidFileName(aepFile, ".aep")){
+                                    if(isValidFileName(aepFile, ".aep","")){
                                         aepElement = makeTag("aep",aepFile);
                                          
                                           for (var k=0; k< previewFolderObj.getFiles().length; k++){
                                               var previewName =   File.decode(previewFolderObj.getFiles()[k].name);
+                                            
                                               
                                               var prefix = aepFile.replace(".aep", "");
                                            
-                                              if(isValidFileName(previewName, prefix)){
-                                                 
-                                                        var previewElement = makeTag("preview",previewName);
+                                              if(isValidFileName(previewName, prefix, ".mp4")){
+                                                 $.writeln(File.decode(previewFolderObj.getFiles()[k].fsName));
+                                                        var previewElement = makePreviewTag(previewName,previewFolderObj.getFiles()[k].name);
                                                         aepElement.appendChild(previewElement);
                                                   }
                                                 
@@ -55,11 +61,11 @@
             
      //create file
 
-            var listFile = File(packageFolder.fullName+"/"+File.decode(packageFolder.name)+".list");
+         
             var fileContent, encoding;
             var encoding = "UTF-8";
             
-            fileContent = "var x ='"+myRoot.toString().replace(/\r?\n|\r/g,"")+"';";
+            fileContent = "var b24f6aad44c60b4d37abf90dc3a0d80e577d79a20d823324bd140d4f257815a8 ='"+myRoot.toString().replace(/\r?\n|\r/g,"")+"';";
             fileContent = fileContent.replace("<package>","");
             fileContent = fileContent.replace("</package>","");
             
@@ -70,7 +76,7 @@ createFile ();
 
            // read file
            var readFile = function(){
-                 var file =File.openDialog ("sdsadasdasdqwjkleqwjkheqwjlk", false);
+                 var file =File.openDialog ("D m m dam bao chon folder di", false);
                  
                  file.encoding = 'utf-8';
                 file.open('r');
@@ -79,7 +85,7 @@ createFile ();
             //    alert("content:\n"+ content);
                 $.evalFile(file);
        
-                var newXML  = XMLList(x);
+                var newXML  = XMLList(b24f6aad44c60b4d37abf90dc3a0d80e577d79a20d823324bd140d4f257815a8);
                 
                 //alert("newXML\n"+newXML);
                 
@@ -110,20 +116,25 @@ function isValidSet(name){
          return true;
     }
 
-function isValidFileName(name, searchText){
-        if (name.indexOf(searchText)!=-1){
+function isValidFileName(name, prefix, postfix){
+        if (name.indexOf(prefix)!=-1 && name.indexOf(postfix)!=-1){
             return true;
     }
     return false;
 }
+function makePreviewTag(text, previewPath){
+         return <preview >{text}</preview>;
+    }
 function makeTag (tagname, text) {
     if(tagname =="set"){
         var packageName  = File.decode(packageFolder.name);
-        return <{tagname} package={packageName}>{text}</{tagname}>;
+        //File.absoluteURI
+        return <{tagname} >{text}</{tagname}>;
         }
     else if(tagname =="package"){
             return  <{tagname} ></{tagname}>;
         }
+
     return <{tagname} >{text}</{tagname}>;
 }
 

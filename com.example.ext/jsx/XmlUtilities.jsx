@@ -114,15 +114,21 @@ function loadXmlRoot(){
     if(listFile.exists){
      $.evalFile(listFile);
      var newXML  = XMLList(b24f6aad44c60b4d37abf90dc3a0d80e577d79a20d823324bd140d4f257815a8);
-     for (var i = 0; i < newXML.descendants().length(); i++) {
-      alert(i);
-      newXML.descendants()[i].@path = listFile.parent;
-            alert(newXML);
-     }
-     xmlRoot.appendChild(newXML);
+     // for (var i = 0; i < newXML.children().length(); i++) {
+     //  alert(i);
+     //  newXML.children()[i].@path = listFile.parent;
+     //        alert(newXML.children()[i]);
+     // }
+    
 
+     xmlRoot.appendChild(newXML);
+     
 
    }
+   for(var x =0; x < xmlRoot.child("set").length();x++){
+        xmlRoot.child("set")[x].@path = listFile.parent;
+     }
+     alert(xmlRoot);
 
  }
 
