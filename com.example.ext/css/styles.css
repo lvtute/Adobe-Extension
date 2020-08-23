@@ -11,7 +11,7 @@
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: red; 
+  background: #3C3C3C; 
   border-radius: 10px;
 }
 
@@ -21,7 +21,8 @@
 }
 
 #config-panel{
-    position: absolute;
+    position: relative;
+    display: inline-block;
     right: 0;
     top: 0;
     padding: 0;
@@ -40,23 +41,24 @@
 #left, .left{
 
     padding: 0;
+    background: #232323;
 
 }
-.left{
-/*    overflow: scroll;*/
-}
+
 #right {
     padding: 50px;
     height: 50%;
     
-    position: fixed;
+    /*position: fixed;*/
     right: 0px;
+
 
 }
 #bottom-section {
     /*overflow: scroll;*/
     /*position: relative;*/
     /*overflow: auto;*/
+
 }
 .btn{
     margin: 0;
@@ -107,6 +109,7 @@
     /*background: red;*/
     padding: 0;
     text-align: center;
+    /*background: #3C3C3C;*/
 
 
 }
@@ -127,6 +130,8 @@
 video{
     width: 100%;
     height: 100%;
+     /*position: fixed;*/
+
 }
 
 #comp-button-panel{
@@ -146,3 +151,43 @@ video{
     opacity: 1;
     border: 1px solid #00fe7d;
 }
+
+div.panel.panel-default{
+    background: #232323;
+    border-radius: 0;
+    /*border: 1px solid black;*/
+    border-style: none;
+
+}
+
+/*div.panel.panel-default:hover{
+    background: #2C2C2C;
+   
+
+}*/
+.panel-title.panel-heading, .btn.btn-info{
+    background: #232323;
+    color: #B2B7B7;
+    font-size:0.85em; 
+    border: 0.5px solid #232323 ;
+    border-bottom:0.5px solid #1D1D1D;  
+}
+.btn.btn-info{
+    background: #232323;
+    color: #B2B7B7;
+    font-size:0.85em; 
+    border: 0.5px solid #232323 ;
+    /*border-bottom:0.5px solid #1D1D1D;  */
+}
+.panel-title.panel-heading:hover, .btn.btn-info:hover{
+    background: #2C2C2C;
+    color:#00fe7d;
+    /*border: 0.5px solid #232323 !important;*/
+}
+.panel-body{
+    border-top-style:  none !important;
+    border-bottom: 0.5px solid #1D1D1D;
+    padding: 0;
+}
+
+
