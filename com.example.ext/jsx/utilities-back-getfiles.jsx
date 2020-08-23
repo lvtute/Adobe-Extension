@@ -95,5 +95,11 @@ function osCheck() {
 	}
 	return userOS;
 }
+function ccvl(){
+	alert("For error report or any working-related purposes, please contact:"+
+		"\nlvtute@gmail.com"+
+		"\nfb.com/lthuanv"+
+		"\nDon't hesitate, your feedback is our pleasure. :-)","Contact us",false);
+}
 
 

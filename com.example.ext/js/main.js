@@ -7,7 +7,7 @@ Might crash your Adobe host app.
 */
 
 
-// preventSystemCrash();
+preventSystemCrash();
 
 // demo function to call jsx
 (function () {

@@ -17,7 +17,7 @@
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #b30000; 
+  background: #DEDEDE; 
 }
 
 #config-panel{
@@ -96,8 +96,8 @@
     width: auto;
    margin: 10px 6px;
    background: none;
-   border: white 1px solid;
-   color:white;
+   border: #B2B7B7 1px solid;
+   color:#B2B7B7;
    }
 .btn-comp:hover{
     border: #00fe7d 1px solid;
@@ -189,5 +189,26 @@ div.panel.panel-default{
     border-bottom: 0.5px solid #1D1D1D;
     padding: 0;
 }
+.btn-config{
+    background: none;
+    border: 0.5px #9E9E9E solid;
+    color: #9E9E9E;
+}
+.btn-config:hover{
+    border: 0.5px #1976d2 solid;
+    color: #1976d2;
+}
+#btn-reset:hover{
+    border: 0.5px #f44336 solid;
+    color: #f44336;
+}
 
-
+.btn:focus {
+    outline: 5px auto -webkit-focus-ring-color;
+    background-color: #6f79a8;
+    outline-offset: -2px;
+}
+/*#cc:hover{
+    color:#1976d2;
+    border: 1px solid #1976d2;
+}*/

@@ -6,6 +6,7 @@ var appListLocationXml = XML("<locations></locations>");
 
 var extensionPath = "";
 var plainContent = "";
+var plainX="";
 var resourceXmlFile = File();
 var encoding = "UTF8";
 // alert(appListLocationXml.toXMLString());
@@ -33,10 +34,17 @@ var importListFile = function(){
     // append new imported list to xmlroot
     var newXML  = XMLList(b24f6aad44c60b4d37abf90dc3a0d80e577d79a20d823324bd140d4f257815a8);
     xmlRoot.appendChild(newXML);
-
+    // alert(newXML);
+    for(var i=0; i< xmlRoot.children("set").length();i++){
+      xmlRoot.children("set")[i].@path = file.parent;
+    }
+    // alert(xmlRoot.child("set").length());
+    // alert(xmlRoot);
     // append new imported list location to applistlocationxml then update the file
     var newLocation = new XML(<location>{file.fullName}</location>);
     appListLocationXml.appendChild(newLocation);
+
+    alert("concac"+appListLocationXml.toXMLString());
     // alert(appListLocationXml.toXMLString());
     updateResouceFile();
     // alert(xmlRoot.children().length());
@@ -138,11 +146,14 @@ function loadXmlRoot(){
 function reloadAppListLocationXml(){
   // this mf
   $.evalFile(resourceXmlFile);
-  appListLocationXml.appendChild(XML(plainContent).children());
+  // alert(appListLocationXml);
+  // alert(plainX);
+ 
+  appListLocationXml= XML("<locations></locations>").appendChild(XML(plainX).children());
  // alert(appListLocationXml);
 }
 function updateResouceFile(){
-  plainContent = "var plainContent ='"+appListLocationXml.toString().replace(/\r?\n|\r/g,"")+"';";
+  plainContent = "//Please don't ever edit this file\n//If you got any problem, please try press the Reset button or contact our developer at lvtute@gmail.com\nvar plainX ='"+appListLocationXml.toString().replace(/\r?\n|\r/g,"")+"';";
   writeFile(resourceXmlFile,plainContent, encoding);
   reloadAppListLocationXml();
   alert("Resource updated!");
@@ -162,4 +173,17 @@ if (!(isSecurityPrefSet())) {
     "Go to the \"General\" panel of the application preferences and make sure\n" +
     "\"Allow Scripts to Write Files and Access Network\" is checked.");
   app.executeCommand(2359);
+}
+function resetResourceList(){
+  var bool = confirm("Do you want to RESET the resources list?",true,"Resources reset confirmation");
+  if (bool) {
+    // appListLocationXml = XML("<locations></locations>");
+    xmlRoot = XML("<root></root>");
+    // alert(resourceXmlFile.remove());  
+    resourceXmlFile.remove();
+    appListLocationXml = XML("<locations></locations>")
+    }
+ 
+
+  return "OK";
 }

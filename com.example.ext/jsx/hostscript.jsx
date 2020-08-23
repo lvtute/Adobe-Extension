@@ -45,7 +45,7 @@ function getAllAepFromSet(set_name){
 
 
 	result = result.child("aep");
-	alert(result);
+	// alert(result);
 	var realResult = "";
 	for (var i = 0; i < result.length(); i++) {
 		realResult += result.text()[i].toString()+",";

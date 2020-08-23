@@ -4,7 +4,7 @@ function laugh (){
 var username = "lvtut";
 
 // getOs(0, function(res){
-		
+
 // 		loadComps(res);
 // 	});
 // function getOs(nothing, callback){
@@ -64,6 +64,7 @@ function loadAepToCollapsedPanel(id){
 		}
 		var button;
 		for (var i = 0; i < result.length; i++) {
+			if(document.getElementById(id).firstChild.innerText=="") continue;
 			button = createAepButton(result[i], document.getElementById(id).firstChild.innerText.replace(" ",""));
 			
 			document.getElementById(id.replace("panel-header","panel-body-")).append(button);
@@ -210,11 +211,11 @@ function onCompClick(path){
 	// 	return;
 	// }
 	var video = document.getElementsByTagName('video')[0];
-    var sources = video.getElementsByTagName('source')[0];
-    sources.src = path;
+	var sources = video.getElementsByTagName('source')[0];
+	sources.src = path;
 
-    video.load();
-    video.play();
+	video.load();
+	video.play();
 
 	// $("#video-source").attr("src",path);
 	// console.log(checkFileExists(path));
@@ -253,7 +254,19 @@ $("#btn-import").click(function(){
 	// csInterfaceGlobal.evalScript('importListFile()');
 	
 });
+(function(){
+	var cc = document.createElement("button");
+	cc.innerHTML='<span class="glyphicon glyphicon-info-sign"></span>';
+	cc.classList.add("btn-config");
+	cc.setAttribute("id", "cc");
+	$('#config-panel').prepend(cc);
 
+	
+	$('#cc').click(function(){
+		csInterfaceGlobal.evalScript("ccvl()");
+	});
+	
+})();
 function checkFileExists(path){
 	// $.ajax({
  //    url:path,
@@ -268,18 +281,34 @@ function checkFileExists(path){
  //    }
 	// });
 	$.get(path)
-    .done(function() { 
-        return true;
-    }).fail(function() { 
-        return false;
-    })
+	.done(function() { 
+		return true;
+	}).fail(function() { 
+		return false;
+	})
 }
 $('video').click(function() {
-				  if (this.paused == false) {
-				      this.pause();
+	if (this.paused == false) {
+		this.pause();
 				     // alert('music paused');
-				  } else {
-				      this.play();
+				 } else {
+				 	this.play();
 				     // alert('music playing');
-				  }
+				 }
 				});
+
+$('#btn-reset').click(function(){
+	// alert("reset");
+
+	doReset(0, function(res){
+		// alert("load sets again!");
+		loadSets();
+		$( "#comp-button-panel" ).empty();
+	});
+	function doReset(nothing, callback){
+		csInterfaceGlobal.evalScript('resetResourceList()', function(res){
+			callback(res);
+		});
+
+	}
+});

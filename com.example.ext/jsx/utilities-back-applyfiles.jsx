@@ -16,9 +16,9 @@ function importAep(path){
 	var comp = app.project.item(1).items[2];
 	var comp2 = app.project.item(1).name;
 	// comp.openInViewer();
-	alert(comp.name);
-	alert("label: "+comp.label+"; "+"comment: "+ comp.comment +"; "+ comp.id);
-	alert(comp instanceof CompItem);
+	// alert(comp.name);
+	// alert("label: "+comp.label+"; "+"comment: "+ comp.comment +"; "+ comp.id);
+	// alert(comp instanceof CompItem);
 	// comp.openInViewer();
 	var attr;
 	for( a in comp){
@@ -43,7 +43,7 @@ function applyComp(previewName){
 	var aepPath  = getAepPath(Aep);
 	// alert(File(aepPath).exists);
 	var compIndex = previewXml.childIndex();
-	alert(importProjectAndApplyComp(aepPath,compIndex));
+	// alert(importProjectAndApplyComp(aepPath,compIndex));
 	return "hello";
 }
 function importProjectAndApplyComp(aepPath, compIndex){
@@ -58,7 +58,7 @@ function importProjectAndApplyComp(aepPath, compIndex){
 			break;
 		}
 	}
-	alert(isExisted);
+	// alert(isExisted);
 	app.beginUndoGroup("Add comp:"+ aepPath+"["+compIndex+"]");
 	app.beginSuppressDialogs();
 	if (isExisted==false) {
