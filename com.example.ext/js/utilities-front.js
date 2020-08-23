@@ -227,8 +227,7 @@ function onCompDoubleClick(path){
 	//alert(path);
 
 	doApplyComp(nothing, function(res){
-		// alert("load sets again!");
-		alert(res);
+		
 	});
 	function doApplyComp(nothing, callback){
 		csInterfaceGlobal.evalScript('applyComp("'+path+'")', function(res){

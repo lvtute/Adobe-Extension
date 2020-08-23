@@ -8,7 +8,10 @@
 
 var xmlRoot = XML("<root></root>");
 
-
+// function err(errString) {
+// alert(errString);
+// }
+// app.onError = err;
 
 
 // called when applicaiton start
