@@ -225,6 +225,7 @@ function onCompClick(path){
 function onCompDoubleClick(path){
 	console.log(path);
 	path = path.slice(path.lastIndexOf("/")+1,path.length);
+	// path = path.replace(".mp4","");
 	//alert(path);
 
 	doApplyComp(nothing, function(res){

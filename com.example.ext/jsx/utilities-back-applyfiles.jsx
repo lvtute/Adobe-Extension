@@ -30,27 +30,39 @@ function importAep(path){
 }
 function applyComp(previewName){
 	// alert(previewName);
-	var previewXml = xmlRoot.descendants("preview");
+	var previewXml = XML("<preview>"+previewName+"</preview>");
+
+	// var aepXml;
+	// alert(xmlRoot.descendants("aep"));
+	for(var i=0; i< xmlRoot.descendants("aep").length();i++){
+		if (xmlRoot.descendants("aep")[i].contains(previewXml)) {
+			aepXml= xmlRoot.descendants("aep")[i];
+			break;
+		}
+	}
+	// alert(aepXml.toXMLString());
+
 	for(var i=0; i< previewXml.length();i++){
 		if (previewXml[i].toString()==previewName) {
 			previewXml = (previewXml[i]);
 			break;
 		}
 	}
-	// alert(previewXml.toXMLString());
-	var Aep =  previewXml.parent();
-	// alert(Aep);
-	var aepPath  = getAepPath(Aep);
+	
+	var aepPath  = getAepPath(aepXml);
+
+	// alert(aepPath);
 	// alert(File(aepPath).exists);
-	var compIndex = previewXml.childIndex();
-	// alert(importProjectAndApplyComp(aepPath,compIndex));
+	var compName = previewName.replace(".mp4","");
+	importProjectAndApplyComp(aepPath,compName);
 	return "hello";
 }
-function importProjectAndApplyComp(aepPath, compIndex){
+function importProjectAndApplyComp(aepPath, compName){
 	// alert(aepPath);
 	var compLocations= [];
 	
 	var aepName = aepPath.slice(aepPath.lastIndexOf("/")+1,aepPath.length);
+
 	var isExisted = false;
 	for(var i=1; i<= app.project.numItems; i++){
 		if (aepName == app.project.items[i].name) {
@@ -59,32 +71,34 @@ function importProjectAndApplyComp(aepPath, compIndex){
 		}
 	}
 	// alert(isExisted);
-	app.beginUndoGroup("Add comp:"+ aepPath+"["+compIndex+"]");
+	app.beginUndoGroup("Add comp");
 	app.beginSuppressDialogs();
 	if (isExisted==false) {
 		var item = app.project.importFile(new ImportOptions(File(aepPath)));
 	}
 	
-	//var comp = app.project.item(compIndex);
-	// alert(app.project.reflect.properties);
-	// alert(app.activeViewer);
-	// app.activate();
-	// alert(app.project.items.length);
-	// alert(app.project.numItems);
-	// alert(app.project.items[1].name);
+	var flag = false;
 	for(var i=1; i<= app.project.numItems; i++){
-		if (app.project.item(i) instanceof CompItem) {
-			compLocations.push(i);
+		if (app.project.item(i) instanceof CompItem 
+			&& app.project.item(i).name==compName) {
+			alert(app.project.item(i).name);
+			flag = true;
 		}	
+		
 	}
+	if (flag == false) {
+		alert("Composition: "+compName+" not found!");		
+	}
+
 
 	app.endSuppressDialogs(false);
 	app.endUndoGroup();
-	// alert(compLocations);
-	// alert(app.project.items[compLocations[compIndex-1]].name);
-	if (app.project.items[compLocations[compIndex-1]] instanceof CompItem) {
-		return app.project.items[compLocations[compIndex-1]].openInViewer();
-	}
+	// // alert(compLocations);
+	// // alert(app.project.items[compLocations[compIndex-1]].name);
+	// if (app.project.items[compLocations[compIndex-1]] instanceof CompItem) {
+	// 	alert(app.project.items[compLocations[compIndex-1]].name);
+	// 	return app.project.items[compLocations[compIndex-1]].openInViewer();
+	// }
 	return null;
 }
 
