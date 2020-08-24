@@ -81,7 +81,8 @@ function importProjectAndApplyComp(aepPath, compName){
 	for(var i=1; i<= app.project.numItems; i++){
 		if (app.project.item(i) instanceof CompItem 
 			&& app.project.item(i).name==compName) {
-			alert(app.project.item(i).name);
+			app.project.item(i).openInViewer();
+			alert("Composition: "+app.project.item(i).name+" applied!", "Composition apply");
 			flag = true;
 		}	
 		

@@ -44,7 +44,7 @@ var importListFile = function(){
     var newLocation = new XML(<location>{file.fullName}</location>);
     appListLocationXml.appendChild(newLocation);
 
-    alert("concac"+appListLocationXml.toXMLString());
+    // alert("concac"+appListLocationXml.toXMLString());
     // alert(appListLocationXml.toXMLString());
     updateResouceFile();
     // alert(xmlRoot.children().length());
