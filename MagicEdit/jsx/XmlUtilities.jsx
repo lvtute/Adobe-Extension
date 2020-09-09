@@ -82,7 +82,8 @@ starter function
 function initializeExtensionPath(path){
 // alert("initializeExtensionPath was called!");
   extensionPath = path;
-  resourceXmlFile = File(extensionPath+"/jsx/resource.properties");
+
+  resourceXmlFile = File("~/Documents/magicEdit/resource.properties");
 
   loadResourceXml();
   loadXmlRoot();
