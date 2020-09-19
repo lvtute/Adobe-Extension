@@ -97,6 +97,7 @@ function osCheck() {
 }
 function ccvl(){
 	alert("For error report or any working-related purposes, please contact:"+
+		"\nFanpage Viet Filmmaker: fb.com/vietfilmmaker"+
 		"\nOur developers: lvtute@gmail.com"+
 		"\nOwner: thuanstudio95@gmail.com"+
 		"\nDon't hesitate, your feedback is our pleasure. :-)","Contact us",false);

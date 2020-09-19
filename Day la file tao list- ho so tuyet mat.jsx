@@ -39,10 +39,11 @@
                                          
                                           for (var k=0; k< previewFolderObj.getFiles().length; k++){
                                               var previewName =   File.decode(previewFolderObj.getFiles()[k].name);
+//~                                               alert("previewName: "+previewName);
                                             
                                               
-                                              var prefix = aepFile.replace(".aep", "");
-                                           
+                                              var prefix = File.decode(aepFile.replace(".aep", ""));
+                                           //     alert("previewName: "+previewName+"\nprefix: "+prefix);
                                               if(isValidFileName(previewName, prefix, ".mp4")){
                                                  $.writeln(File.decode(previewFolderObj.getFiles()[k].fsName));
                                                         var previewElement = makePreviewTag(previewName,previewFolderObj.getFiles()[k].name);

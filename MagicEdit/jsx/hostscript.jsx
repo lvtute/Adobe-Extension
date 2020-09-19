@@ -38,7 +38,8 @@ function getAllAepFromSet(set_name){
 	var result = xmlRoot.children();
 	for (var i = 0; i < result.length(); i++) {
 		if(result[i].text().toString()==set_name){
-			result = result[i];
+			result =result[i];
+
 			break;
 		}
 	}
@@ -51,6 +52,7 @@ function getAllAepFromSet(set_name){
 		realResult += result.text()[i].toString()+",";
 	}
 	realResult = realResult.slice(0, realResult.length-1);
+	// realResult = File.decode(realResult);
 	// alert(realResult);
 	return realResult;
 	
@@ -59,7 +61,8 @@ function getAllAepFromSet(set_name){
 
 function getCompsByAepName(aepName){
 	var isImage = false;
-	
+	aepName = File.encode(aepName);
+	aepName = aepName+".aep";
 
 	var result1="";
 	var result2 = "";

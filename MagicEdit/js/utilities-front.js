@@ -58,12 +58,17 @@ function loadAepToCollapsedPanel(id){
 	console.log(element);
 	csInterfaceGlobal.evalScript('getAllAepFromSet("'+element.firstChild.innerText+'")', function(res){
 		result = res.split(",");
+		
+
+		// alert(result);
 		var buttonContainer =  document.getElementById(id.replace("panel-header","panel-body-"));
 		while (buttonContainer.firstChild) {
 			buttonContainer.removeChild(buttonContainer.firstChild);
 		}
 		var button;
 		for (var i = 0; i < result.length; i++) {
+			result[i] = decodeURI(result[i]);
+			result[i] = result[i].replace(".aep","");
 			if(document.getElementById(id).firstChild.innerText=="") continue;
 			button = createAepButton(result[i], document.getElementById(id).firstChild.innerText.replace(" ",""));
 			

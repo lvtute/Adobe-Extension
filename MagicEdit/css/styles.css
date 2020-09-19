@@ -37,7 +37,7 @@
 }
 
 
- body {overflow: auto;}
+body {overflow: auto;}
 #left, .left{
 
     padding: 0;
@@ -51,6 +51,7 @@
     
     /*position: fixed;*/
     right: 0px;
+    /*overflow: scroll;*/
 
 
 }
@@ -110,6 +111,9 @@
     padding: 0;
     text-align: center;
     /*background: #3C3C3C;*/
+    width: 100%;
+    position: fixed;
+    z-index: 100;
 
 
 }
@@ -211,4 +215,12 @@ div.panel.panel-default{
 /*#cc:hover{
     color:#1976d2;
     border: 1px solid #1976d2;
+}*/
+
+#bottom-section{
+    margin-top: 300px;
+    z-index: 0;
+}
+/*.panel-title.panel-heading, btn.btn-info{
+    position: fixed;
 }*/

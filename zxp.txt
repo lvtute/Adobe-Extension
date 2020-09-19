@@ -1,0 +1,1 @@
+ZXPSignCmd -sign MagicEdit Magic.zxp license.p12 thuanc10

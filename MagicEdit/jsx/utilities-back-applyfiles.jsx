@@ -1,6 +1,6 @@
 // apply aep file
 function importAep(path){
-
+	alert(path);
 	var folder = Folder(path);
 	var files = folder.getFiles();
 	var aepFiles = [];
@@ -65,6 +65,9 @@ function importProjectAndApplyComp(aepPath, compName){
 
 	var isExisted = false;
 	for(var i=1; i<= app.project.numItems; i++){
+
+		// alert("aep: "+aepName+"\nitem: "+app.project.items[i].name);
+		aepName = File.decode(aepName);
 		if (aepName == app.project.items[i].name) {
 			isExisted = true;
 			break;
