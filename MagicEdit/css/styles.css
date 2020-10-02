@@ -110,7 +110,7 @@ body {overflow: auto;}
     /*background: red;*/
     padding: 0;
     text-align: center;
-    /*background: #3C3C3C;*/
+    background: #3C3C3C;
     width: 100%;
     position: fixed;
     z-index: 100;

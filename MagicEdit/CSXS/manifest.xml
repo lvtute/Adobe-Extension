@@ -48,8 +48,8 @@
 					<Menu>Magic Edit</Menu>
 					<Geometry>
 						<Size>
-							<Height>200</Height>
-							<Width>150</Width>
+							<Height>600</Height>
+							<Width>500</Width>
 						</Size>
                     <!-- <MinSize>
                             <Height>550</Height>
